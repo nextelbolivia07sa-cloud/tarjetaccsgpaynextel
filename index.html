@@ -1,101 +1,170 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>World Life Pass</title>
-  <style>
-    :root {
-      --bg1: #02140d;
-      --bg2: #031f16;
-      --panel: rgba(4, 10, 18, 0.88);
-      --line: rgba(105, 145, 255, 0.32);
-      --text: #eef7ff;
-      --muted: rgba(231, 245, 255, 0.72);
-      --green: #00d84f;
-      --green2: #0aa83e;
-      --blue: #5aa5ff;
-      --shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NEXTEL WORLD LIFE</title>
 
-    * { box-sizing: border-box; }
+<style>
 
-    html, body {
-      margin: 0;
-      min-height: 100%;
-      font-family: Arial, Helvetica, sans-serif;
-      color: var(--text);
-      background:
-        radial-gradient(circle at 15% 50%, rgba(60,255,140,.16), transparent 30%),
-        radial-gradient(circle at 85% 35%, rgba(60,255,140,.18), transparent 28%),
-        linear-gradient(180deg, #02170f 0%, #04110f 100%);
-      overflow-x: hidden;
-    }
+body{
+font-family: Arial, Helvetica, sans-serif;
+background: linear-gradient(135deg,#000,#1a0000);
+color:white;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+margin:0;
+}
 
-    #particles {
-      position: fixed;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 0;
-      opacity: .9;
-    }
+.container{
+background:#0a0a0a;
+padding:30px;
+border-radius:15px;
+width:350px;
+box-shadow:0 0 20px #ff000050;
+}
 
-    .matrix {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 0;
-      overflow: hidden;
-      opacity: .15;
-    }
+h1{
+text-align:center;
+color:#ff1a1a;
+margin-bottom:20px;
+}
 
-    .matrix span {
-      position: absolute;
-      top: -20%;
-      color: #94ffb6;
-      font-size: clamp(16px, 2vw, 26px);
-      animation: fall linear infinite;
-      text-shadow: 0 0 12px rgba(83,255,150,.4);
-      user-select: none;
-      white-space: pre;
-    }
+.card-preview{
+background:linear-gradient(135deg,#1a0000,#ff0000);
+border-radius:15px;
+padding:20px;
+height:180px;
+box-shadow:0 0 20px #ff000070;
+margin-bottom:20px;
+}
 
-    @keyframes fall {
-      from { transform: translateY(-20vh); }
-      to { transform: translateY(140vh); }
-    }
+.chip{
+width:40px;
+height:30px;
+background:gold;
+border-radius:5px;
+margin-bottom:20px;
+}
 
-    .page {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 24px 14px;
-      position: relative;
-      z-index: 1;
-    }
+.card-number{
+letter-spacing:3px;
+font-size:18px;
+margin-bottom:15px;
+}
 
-    .wrap {
-      width: 100%;
-      max-width: 460px;
-    }
+.card-name{
+font-size:14px;
+}
 
-    .title {
-      color: #1158d8;
-      font-size: clamp(28px, 6vw, 42px);
-      font-weight: 800;
-      margin: 0 0 10px;
-      text-shadow: 0 0 20px rgba(17,88,216,.2);
-    }
+.card-exp{
+float:right;
+font-size:14px;
+}
 
-    .separator {
-      height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,.75), transparent);
-      margin-bottom: 22px;
-    }
+input{
+width:100%;
+padding:12px;
+margin:10px 0;
+border-radius:8px;
+border:none;
+background:#1a1a1a;
+color:white;
+font-size:16px;
+}
 
-    .panel {
+button{
+width:100%;
+padding:15px;
+background:#ff0000;
+border:none;
+border-radius:10px;
+font-size:16px;
+color:white;
+cursor:pointer;
+transition:0.3s;
+}
+
+button:hover{
+background:#cc0000;
+}
+
+.footer{
+text-align:center;
+font-size:12px;
+margin-top:15px;
+color:#888;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>NEXTEL WORLD LIFE</h1>
+
+<div class="card-preview">
+
+<div class="chip"></div>
+
+<div class="card-number" id="previewNumber">
+0000 0000 0000 0000
+</div>
+
+<div class="card-name" id="previewName">
+USUARIO
+</div>
+
+<div class="card-exp" id="previewExp">
+MM/AA
+</div>
+
+</div>
+
+<input type="text" id="number" placeholder="Número de tarjeta">
+
+<input type="text" id="name" placeholder="Nombre del titular">
+
+<input type="text" id="exp" placeholder="Fecha vencimiento MM/AA">
+
+<button onclick="agregar()">AGREGAR TARJETA</button>
+
+<div class="footer">
+NEXTEL WORLD LIFE ©
+</div>
+
+</div>
+
+<script>
+
+let number=document.getElementById("number")
+let name=document.getElementById("name")
+let exp=document.getElementById("exp")
+
+number.oninput=()=>{
+document.getElementById("previewNumber").innerText=number.value
+}
+
+name.oninput=()=>{
+document.getElementById("previewName").innerText=name.value
+}
+
+exp.oninput=()=>{
+document.getElementById("previewExp").innerText=exp.value
+}
+
+function agregar(){
+alert("Tarjeta agregada correctamente")
+}
+
+</script>
+
+</body>
+</html>    .panel {
       position: relative;
       background: linear-gradient(180deg, rgba(4, 8, 20, 0.94), rgba(2, 7, 14, 0.92));
       border: 1px solid rgba(92, 119, 255, 0.32);
